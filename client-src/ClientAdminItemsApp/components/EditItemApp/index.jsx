@@ -284,7 +284,7 @@ export default class EditItemApp extends React.Component {
                     this.onUpdateItemMeta(attrDict);
                   }}
                 />
-                {/* <AdminSelect
+                <AdminSelect
                   value={categories.map((c) => (CATEGORIES_DICT[c]))}
                   options={CATEGORIES_SELECT_OPTIONS}
                   onChange={(selectedOptions) => {
@@ -296,10 +296,10 @@ export default class EditItemApp extends React.Component {
                       return categories.length >= 3;
                     },
                   }}
-                /> */}
+                />
                 <AdminInput
                   labelComponent={<ExplainText bundle={CONTROLS_TEXTS_DICT[ITEM_CONTROLS.TYPE]}/>}
-                  value={item['item.type']}
+                  value={item.type}
                   onChange={(e) => {
                     const attrDict = {'type': e.target.value};
                     this.onUpdateItemMeta(attrDict);
