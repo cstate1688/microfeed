@@ -86,6 +86,7 @@ export default class EditItemApp extends React.Component {
     this.onDelete = this.onDelete.bind(this);
     this.onUpdateFeed = this.onUpdateFeed.bind(this);
     this.onUpdateItemMeta = this.onUpdateItemMeta.bind(this);
+    this.onUpdateCategoryMeta = this.onUpdateCategoryMeta.bind(this);
     this.onUpdateItemToFeed = this.onUpdateItemToFeed.bind(this);
 
     const $feedContent = document.getElementById('feed-content');
@@ -151,6 +152,16 @@ export default class EditItemApp extends React.Component {
       changed: true,
       item: {...prevState.item, ...attrDict,},
       ...extraDict,
+    }));
+  }
+
+  onUpdateCategoryMeta(keyName, value) {
+    this.setState((prevState) => ({
+      changed: true,
+      item: {
+        ...prevState.item,
+        [keyName]: value,
+      },
     }));
   }
 
