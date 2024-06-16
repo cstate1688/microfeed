@@ -28,8 +28,43 @@ import {
 } from "./FormExplainTexts";
 import {preventCloseWhenChanged} from "../../../common/BrowserUtils";
 import {getMediaFileFromUrl} from "../../../../common-src/MediaFileUtils";
+import {LANGUAGE_CODES_LIST, ITUNES_CATEGORIES_DICT, NAV_ITEMS} from "../../../../common-src/Constants";
 
 const SUBMIT_STATUS__START = 1;
+
+const LANGUAGE_CODES_DICT = {};
+const LANGUAGE_CODES_SELECT_OPTIONS = [];
+LANGUAGE_CODES_LIST.forEach((lc) => {
+  LANGUAGE_CODES_DICT[lc.code] = {
+    code: lc.code,
+    value: `${lc.name} ${lc.code}`,
+    label: <div>
+      <div>{lc.name}</div>
+      <div className="text-muted-color text-sm">{lc.code}</div>
+    </div>,
+  };
+  LANGUAGE_CODES_SELECT_OPTIONS.push(LANGUAGE_CODES_DICT[lc.code]);
+});
+
+const CATEGORIES_SELECT_OPTIONS = [];
+const CATEGORIES_DICT = {};
+Object.keys(ITUNES_CATEGORIES_DICT).forEach((topLevel) => {
+  const topLevelOption = {
+    value: topLevel,
+    label: topLevel,
+  };
+  CATEGORIES_SELECT_OPTIONS.push(topLevelOption);
+  CATEGORIES_DICT[topLevel] = topLevelOption;
+  ITUNES_CATEGORIES_DICT[topLevel].forEach((subLevel) => {
+    const subLevelValue = `${topLevel} / ${subLevel}`;
+    const subLevelOption = {
+      value: subLevelValue,
+      label: subLevelValue,
+    };
+    CATEGORIES_SELECT_OPTIONS.push(subLevelOption)
+    CATEGORIES_DICT[subLevelValue] = subLevelOption;
+  });
+});
 
 function initItem(itemId) {
   return ({
@@ -181,6 +216,7 @@ export default class EditItemApp extends React.Component {
 
   render() {
     const {submitStatus, itemId, item, action, feed, onboardingResult, changed} = this.state;
+    const categories = item.categories || [];
     const submitting = submitStatus === SUBMIT_STATUS__START;
     const {mediaFile} = item;
     const status = item.status || STATUSES.PUBLISHED;

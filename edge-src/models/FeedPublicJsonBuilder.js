@@ -193,7 +193,29 @@ export default class FeedPublicJsonBuilder {
       id: item.id,
       title: item.title || 'untitled',
       type: item.type || 'untitled',
+      categories: [],
     };
+    
+    const itemCategories = item.categories || [];
+    itemCategories.forEach((c) => {
+      const topAndSubCats = c.split('/');
+      let cat;
+      if (topAndSubCats) {
+        if (topAndSubCats.length > 0) {
+          cat = {
+            'name': topAndSubCats[0].trim(),
+          };
+        }
+        if (topAndSubCats.length > 1) {
+          cat['categories'] = [{
+            'name': topAndSubCats[1].trim(),
+          }]
+        }
+      }
+      if (cat) {
+        newItem['categories'].push(cat);
+      }
+    });
     const attachment = {};
     const _microfeed = {
       is_audio: mediaFile.isAudio,
