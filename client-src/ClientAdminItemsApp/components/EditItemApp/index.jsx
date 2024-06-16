@@ -296,10 +296,11 @@ export default class EditItemApp extends React.Component {
                   }}
                 />
                 <AdminSelect
+                  labelComponent={<ExplainText bundle={CONTROLS_TEXTS_DICT[ITEM_CONTROLS.CATEGORIES]}/>}
                   value={categories.map((c) => (CATEGORIES_DICT[c]))}
                   options={CATEGORIES_SELECT_OPTIONS}
                   onChange={(selectedOptions) => {
-                    this.onUpdateItemMeta('categories', [...selectedOptions.map((o) => o.value)]);
+                    this.onUpdateCategoryMeta('categories', [...selectedOptions.map((o) => o.value)]);
                   }}
                   extraParams={{
                     isMulti: true,

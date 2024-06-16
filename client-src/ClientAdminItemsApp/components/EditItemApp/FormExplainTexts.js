@@ -2,6 +2,7 @@ import {ITEM_STATUSES_DICT} from "../../../../common-src/Constants";
 
 export const ITEM_CONTROLS = {
   TITLE: 'item_title',
+  CATEGORIES: 'item_categories',
   TYPE: 'item_type',
   IMAGE: 'item_image',
   MEDIA_FILE: 'item_media_file',
@@ -28,6 +29,14 @@ export const CONTROLS_TEXTS_DICT = {
       "Also, don’t repeat the title of your show within your episode title.",
     rss: '<channel><item><title>Title Here</title></item></channel>',
     json: '{ "items": [{"title": "Title Here"}] }',
+  },
+  [ITEM_CONTROLS.CATEGORIES]: {
+    linkName: 'Categories',
+    modalTitle: 'Channel / Categories',
+    text: "A channel's categories. All available categories are from <a href='https://podcasters.apple.com/support/1691-apple-podcasts-categories'>Apple Podcasts</a>.<br>" +
+      "If this is a podcast, although you can specify more than one category, Apple Podcasts only recognizes the first category and subcategory.",
+    rss: '<channel><itunes:category text="Arts" /></channel>',
+    json: '{ "_microfeed": {"categories": [{"name": "Arts"}]} }',
   },
   [ITEM_CONTROLS.TYPE]: {
     linkName: 'Type',
