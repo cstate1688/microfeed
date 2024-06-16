@@ -18,6 +18,8 @@ import {
   NAV_ITEMS_DICT,
   STATUSES,
   ITEM_STATUSES_DICT,
+  LANGUAGE_CODES_LIST, 
+  ITUNES_CATEGORIES_DICT
 } from "../../../../common-src/Constants";
 import {AdminSideQuickLinks, SideQuickLink} from "../../../components/AdminSideQuickLinks";
 import AdminRichEditor from "../../../components/AdminRichEditor";
@@ -28,7 +30,6 @@ import {
 } from "./FormExplainTexts";
 import {preventCloseWhenChanged} from "../../../common/BrowserUtils";
 import {getMediaFileFromUrl} from "../../../../common-src/MediaFileUtils";
-import {LANGUAGE_CODES_LIST, ITUNES_CATEGORIES_DICT, NAV_ITEMS} from "../../../../common-src/Constants";
 
 const SUBMIT_STATUS__START = 1;
 
@@ -46,25 +47,25 @@ const SUBMIT_STATUS__START = 1;
 //   LANGUAGE_CODES_SELECT_OPTIONS.push(LANGUAGE_CODES_DICT[lc.code]);
 // });
 
-const CATEGORIES_SELECT_OPTIONS = [];
-const CATEGORIES_DICT = {};
-Object.keys(ITUNES_CATEGORIES_DICT).forEach((topLevel) => {
-  const topLevelOption = {
-    value: topLevel,
-    label: topLevel,
-  };
-  CATEGORIES_SELECT_OPTIONS.push(topLevelOption);
-  CATEGORIES_DICT[topLevel] = topLevelOption;
-  ITUNES_CATEGORIES_DICT[topLevel].forEach((subLevel) => {
-    const subLevelValue = `${topLevel} / ${subLevel}`;
-    const subLevelOption = {
-      value: subLevelValue,
-      label: subLevelValue,
-    };
-    CATEGORIES_SELECT_OPTIONS.push(subLevelOption)
-    CATEGORIES_DICT[subLevelValue] = subLevelOption;
-  });
-});
+// const CATEGORIES_SELECT_OPTIONS = [];
+// const CATEGORIES_DICT = {};
+// Object.keys(ITUNES_CATEGORIES_DICT).forEach((topLevel) => {
+//   const topLevelOption = {
+//     value: topLevel,
+//     label: topLevel,
+//   };
+//   CATEGORIES_SELECT_OPTIONS.push(topLevelOption);
+//   CATEGORIES_DICT[topLevel] = topLevelOption;
+//   ITUNES_CATEGORIES_DICT[topLevel].forEach((subLevel) => {
+//     const subLevelValue = `${topLevel} / ${subLevel}`;
+//     const subLevelOption = {
+//       value: subLevelValue,
+//       label: subLevelValue,
+//     };
+//     CATEGORIES_SELECT_OPTIONS.push(subLevelOption)
+//     CATEGORIES_DICT[subLevelValue] = subLevelOption;
+//   });
+// });
 
 function initItem(itemId) {
   return ({
@@ -283,19 +284,19 @@ export default class EditItemApp extends React.Component {
                     this.onUpdateItemMeta(attrDict);
                   }}
                 />
-                <AdminSelect
+                {/* <AdminSelect
                   value={categories.map((c) => (CATEGORIES_DICT[c]))}
                   options={CATEGORIES_SELECT_OPTIONS}
-                  // onChange={(selectedOptions) => {
-                  //   this.onUpdateItemMeta('categories', [...selectedOptions.map((o) => o.value)]);
-                  // }}
+                  onChange={(selectedOptions) => {
+                    this.onUpdateItemMeta('categories', [...selectedOptions.map((o) => o.value)]);
+                  }}
                   extraParams={{
                     isMulti: true,
                     isOptionDisabled: () => {
                       return categories.length >= 3;
                     },
                   }}
-                />
+                /> */}
                 <AdminInput
                   labelComponent={<ExplainText bundle={CONTROLS_TEXTS_DICT[ITEM_CONTROLS.ITUNES_TITLE]}/>}
                   value={item['item.type']}
