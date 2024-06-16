@@ -46,6 +46,10 @@ export default class FeedCrudManager {
       internalSchema.mediaFile = mediaFile;
     }
 
+    if (item.type) {
+      internalSchema.type = item.type;
+    }
+
     if (item.url) {
       internalSchema.link = item.url;
     }

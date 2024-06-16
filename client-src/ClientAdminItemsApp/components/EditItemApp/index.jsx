@@ -246,6 +246,23 @@ export default class EditItemApp extends React.Component {
                     this.onUpdateItemMeta(attrDict);
                   }}
                 />
+                <AdminSelect
+                  value={categories.map((c) => (CATEGORIES_DICT[c]))}
+                  options={CATEGORIES_SELECT_OPTIONS}
+                  onChange={(selectedOptions) => {
+                    this.onUpdateChannelMeta('categories', [...selectedOptions.map((o) => o.value)]);
+                  }}
+                  extraParams={{
+                    isMulti: true,
+                    isOptionDisabled: () => {
+                      return categories.length >= 3;
+                    },
+                  }}
+                />
+                <AdminInput
+                  labelComponent={<ExplainText bundle={CONTROLS_TEXTS_DICT[ITEM_CONTROLS.ITUNES_TITLE]}/>}
+                  value={item['item.type']}
+                />
                 <div className="grid grid-cols-2 gap-4 mt-4">
                   <AdminDatetimePicker
                     labelComponent={<ExplainText bundle={CONTROLS_TEXTS_DICT[ITEM_CONTROLS.PUB_DATE]}/>}

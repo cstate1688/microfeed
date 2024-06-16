@@ -192,6 +192,7 @@ export default class FeedPublicJsonBuilder {
     const newItem = {
       id: item.id,
       title: item.title || 'untitled',
+      type: item.type || 'untitled',
     };
     const attachment = {};
     const _microfeed = {
