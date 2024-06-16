@@ -32,19 +32,19 @@ import {LANGUAGE_CODES_LIST, ITUNES_CATEGORIES_DICT, NAV_ITEMS} from "../../../.
 
 const SUBMIT_STATUS__START = 1;
 
-const LANGUAGE_CODES_DICT = {};
-const LANGUAGE_CODES_SELECT_OPTIONS = [];
-LANGUAGE_CODES_LIST.forEach((lc) => {
-  LANGUAGE_CODES_DICT[lc.code] = {
-    code: lc.code,
-    value: `${lc.name} ${lc.code}`,
-    label: <div>
-      <div>{lc.name}</div>
-      <div className="text-muted-color text-sm">{lc.code}</div>
-    </div>,
-  };
-  LANGUAGE_CODES_SELECT_OPTIONS.push(LANGUAGE_CODES_DICT[lc.code]);
-});
+// const LANGUAGE_CODES_DICT = {};
+// const LANGUAGE_CODES_SELECT_OPTIONS = [];
+// LANGUAGE_CODES_LIST.forEach((lc) => {
+//   LANGUAGE_CODES_DICT[lc.code] = {
+//     code: lc.code,
+//     value: `${lc.name} ${lc.code}`,
+//     label: <div>
+//       <div>{lc.name}</div>
+//       <div className="text-muted-color text-sm">{lc.code}</div>
+//     </div>,
+//   };
+//   LANGUAGE_CODES_SELECT_OPTIONS.push(LANGUAGE_CODES_DICT[lc.code]);
+// });
 
 const CATEGORIES_SELECT_OPTIONS = [];
 const CATEGORIES_DICT = {};
@@ -286,9 +286,9 @@ export default class EditItemApp extends React.Component {
                 <AdminSelect
                   value={categories.map((c) => (CATEGORIES_DICT[c]))}
                   options={CATEGORIES_SELECT_OPTIONS}
-                  onChange={(selectedOptions) => {
-                    this.onUpdateChannelMeta('categories', [...selectedOptions.map((o) => o.value)]);
-                  }}
+                  // onChange={(selectedOptions) => {
+                  //   this.onUpdateItemMeta('categories', [...selectedOptions.map((o) => o.value)]);
+                  // }}
                   extraParams={{
                     isMulti: true,
                     isOptionDisabled: () => {
