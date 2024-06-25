@@ -1,0 +1,6 @@
+{
+    "github-actions.workflows.pinned.workflows": [
+        ".github/workflows/deploy.yml",
+        ".github/workflows/deploy-cms-travels-la.yml"
+    ]
+}
